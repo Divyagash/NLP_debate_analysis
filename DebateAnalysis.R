@@ -195,8 +195,8 @@ trumpCountry <- mapCountryData(spdf_Trump, nameColumnToPlot="Frequency of countr
 # classify emotion
 library(syuzhet)
 library(sentiment)
-clinton_nrc<-colSums(get_nrc_sentiment(clinton))
-trump_nrc<-colSums(get_nrc_sentiment(trump))
+clinton_nrc <- colSums(get_nrc_sentiment(clinton))
+trump_nrc <- colSums(get_nrc_sentiment(trump))
 
 # Plot the sentiment from each candidate
 clinton_nrc_Df <- as.data.frame(cbind(names(clinton_nrc),clinton_nrc))
@@ -240,18 +240,18 @@ word_freq_trump_WC = plyr::count(tot_words_trump) %>% arrange(desc(freq))
 
 
 # Clinton wordcloud
-word_freq_WC$x<-tolower(word_freq_WC$x)
+word_freq_WC$x <- tolower(word_freq_WC$x)
 Words <- word_freq_WC$x[!(word_freq_WC$x %in% stop_words)]
-word_freq_WC<-word_freq_WC[match(Words,word_freq_WC$x),]
+word_freq_WC <- word_freq_WC[match(Words,word_freq_WC$x),]
 
 
-word_freq_WC$x<-removePunctuation(word_freq_WC$x)
+word_freq_WC$x <- removePunctuation(word_freq_WC$x)
 Words <- word_freq_WC$x[!(word_freq_WC$x %in% stop_words)]
-word_freq_WC<-word_freq_WC[match(Words,word_freq_WC$x),]
+word_freq_WC <- word_freq_WC[match(Words,word_freq_WC$x),]
 
 
 distinct_df = word_freq_WC %>% distinct(x)
-word_freq_WC<-distinct_df[-c(1,2),]
+word_freq_WC <- distinct_df[-c(1,2),]
 
 pal2 <- brewer.pal(8,"Dark2")
 png("wordcloud_packages_clinton.png", width=1280,height=800)
@@ -261,18 +261,18 @@ wordcloud(word_freq_WC$x,word_freq_WC$freq, scale=c(8,.2),min.freq=5,
 dev.off()
 
 # Trump wordcloud
-word_freq_trump_WC$x<-tolower(word_freq_trump_WC$x)
+word_freq_trump_WC$x <- tolower(word_freq_trump_WC$x)
 Words <- word_freq_trump_WC$x[!(word_freq_trump_WC$x %in% stop_words)]
-word_freq_trump_WC<-word_freq_trump_WC[match(Words,word_freq_trump_WC$x),]
+word_freq_trump_WC <- word_freq_trump_WC[match(Words,word_freq_trump_WC$x),]
 
 
-word_freq_trump_WC$x<-removePunctuation(word_freq_trump_WC$x)
+word_freq_trump_WC$x <- removePunctuation(word_freq_trump_WC$x)
 Words <- word_freq_trump_WC$x[!(word_freq_trump_WC$x %in% stop_words)]
-word_freq_trump_WC<-word_freq_trump_WC[match(Words,word_freq_trump_WC$x),]
+word_freq_trump_WC <- word_freq_trump_WC[match(Words,word_freq_trump_WC$x),]
 
 
 distinct_df = word_freq_trump_WC %>% distinct(x)
-word_freq_trump_WC<-distinct_df[-c(1,2),]
+word_freq_trump_WC <- distinct_df[-c(1,2),]
 
 pal2 <- brewer.pal(8,"Dark2")
 png("wordcloud_packages_trump.png", width=1280,height=800)
@@ -304,9 +304,9 @@ wordcloud(word_freq_trump_WC$x,word_freq_trump_WC$freq, scale=c(8,.2),min.freq=1
           max.words=Inf, random.order=FALSE, rot.per=.15, colors=pal2)
 
 
-corpus=Corpus(VectorSource(word_freq_trump_WC))
-corpus=tm_map(corpus,PlainTextDocument)
-corpus=tm_map(corpus,removePunctuation)
+corpus <- Corpus(VectorSource(word_freq_trump_WC))
+corpus <- tm_map(corpus,PlainTextDocument)
+corpus <- tm_map(corpus,removePunctuation)
 corpus <- tm_map(corpus, tolower)
 corpus <- tm_map(corpus, function(x) removeWords(x, stopwords("english")))
 corpus <- tm_map(corpus, PlainTextDocument)
