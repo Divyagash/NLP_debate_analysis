@@ -6,19 +6,19 @@ Transcript was taken from deabtes.org https://www.debates.org/voter-education/de
 
 I used the following R packages to perform the analysis
 
-rvest
-stringr
-plyr
-ggmap
-dplyr
-plyr
-tm
-wordcloud
-datasets
-maps
-countrycode
-psData
-rworldmap
-syuzhet
-sentiment
+* rvest
+* stringr
+* plyr
+* ggmap
+* dplyr
+* plyr
+* tm
+* wordcloud
+* datasets
+* maps
+* countrycode
+* psData
+* rworldmap
+* syuzhet
+* sentiment
 
